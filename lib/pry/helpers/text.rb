@@ -86,10 +86,14 @@ class Pry
         else
           before_jruby = Pry::JRuby.run_jruby_in_process?
           Pry::JRuby.inprocess_launch_jruby!(true)
-          variables = {str: Base64.strict_encode64(Marshal.dump(str)), # make sure "str" is not eval'ed.
-                       impl_opts: jruby? ? "--dev --client --disable=gems --disable=did_you_mean" : ""}
-          args = Shellwords.shellsplit(DISPLAY_CMD % variables)
-          Open3.popen3({}, [RbConfig.ruby, "pry-#{__method__}"], *args) do |_,out,_,_|
+          vars = {
+            str: Base64.strict_encode64(Marshal.dump(str)), # avoid eval "str"
+            impl_opts: jruby? ? "--dev --client --disable=gems --disable=did_you_mean" : ""
+          }
+          args = Shellwords.shellsplit(DISPLAY_CMD % vars)
+          Open3.popen3({},
+                       [RbConfig.ruby, "#{File.basename(RbConfig.ruby)} (pry-#{__method__})"],
+                       *args) do |_,out,_,_|
             Pry::JRuby.inprocess_launch_jruby!(before_jruby)
             str == out.gets.to_s.chomp
           end
