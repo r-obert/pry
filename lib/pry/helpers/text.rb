@@ -84,10 +84,15 @@ class Pry
         # Assume all terminals support ASCII, mostly an optimisation for JRuby.
         when str.ascii_only? then true
         else
+          before_jruby = Pry::JRuby.run_jruby_in_process?
+          Pry::JRuby.inprocess_launch_jruby!(true)
           variables = {str: Base64.strict_encode64(Marshal.dump(str)), # make sure "str" is not eval'ed.
                        impl_opts: jruby? ? "--dev --client --disable=gems --disable=did_you_mean" : ""}
           args = Shellwords.shellsplit(DISPLAY_CMD % variables)
-          Open3.popen3({}, [RbConfig.ruby, "pry-#{__method__}"], *args) {|_,out,_,_| str == out.gets.to_s.chomp}
+          Open3.popen3({}, [RbConfig.ruby, "pry-#{__method__}"], *args) do |_,out,_,_|
+            Pry::JRuby.inprocess_launch_jruby!(before_jruby)
+            str == out.gets.to_s.chomp
+          end
         end
       end
       require 'base64'
