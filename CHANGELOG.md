@@ -6,7 +6,7 @@ __Fork began at https://github.com/pry/pry/commit/f177c95b13c4d702c145885d8fe611
 
 __Features__
 
-    * Add `Pry.configure` as an alternative to the current way of changing configuration options in `.pryrc` files.
+   * Add `Pry.configure` as an alternative to the current way of changing configuration options in `.pryrc` files.
     ([#1502](https://github.com/pry/pry/pull/1502))
 
     * Add `Pry::Helpers::Text#{displayable_character?,displayable_string?,snowman_ready?}`.
@@ -58,7 +58,7 @@ __Features__
 
 __Bug fix__
 
-    * Fix auto-indentation of code that uses a single-line rescue ([#1450](https://github.com/pry/pry/issues/1450))
+   * Fix auto-indentation of code that uses a single-line rescue ([#1450](https://github.com/pry/pry/issues/1450))
     * Don't raise when directory permissions don't allow file expansion ([#1432](https://github.com/pry/pry/issues/1432))
     * Defining a method called "ls" no longer breaks the "ls" command ([#1407](https://github.com/pry/pry/issues/1407))
     * Syntax highlight &lt;tt&gt; tags in documentation output.
@@ -74,7 +74,7 @@ __Bug fix__
 
 __Misc__
 
-    * Display a warning when you cd'ed inside a C object and executed 'show-source' without arguments ([#691](https://github.com/pry/pry/issues/691))
+   * Display a warning when you cd'ed inside a C object and executed 'show-source' without arguments ([#691](https://github.com/pry/pry/issues/691))
 
     * Make the stagger_output method more reliable by reusing possibly available Pry instance ([#1364](https://github.com/pry/pry/pull/1364))
 
@@ -96,15 +96,15 @@ __Misc__
 
 __Ruby 2.4__
 
-    * Improve Ruby 2.4 support ([#1611](https://github.com/pry/pry/pull/1611)):
-        * Deprecated constants are hidden from `ls` output by default, use the `-d` switch to see them.
-        * Fix warnings that originate in Pry while using the repl.
+   * Improve Ruby 2.4 support ([#1611](https://github.com/pry/pry/pull/1611)):
+     * Deprecated constants are hidden from `ls` output by default, use the `-d` switch to see them.
+     * Fix warnings that originate in Pry while using the repl.
 
 __Deprecated__
 
-    * `Pry::Helpers::Text#default` is deprecated in favor of `Pry::Helpers::Colors#strip_color`.
-    * Remove "Pry::Config#refresh", use "Pry::Config#clear" instead.
-    * Removed old API's using `Pry::Hooks.from_hash` altogether
+   * `Pry::Helpers::Text#default` is deprecated in favor of `Pry::Helpers::Colors#strip_color`.
+   * Remove "Pry::Config#refresh", use "Pry::Config#clear" instead.
+   * Removed old API's using `Pry::Hooks.from_hash` altogether
 
 
 ### 0.10.1
