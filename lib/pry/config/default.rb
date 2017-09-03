@@ -127,6 +127,9 @@ class Pry::Config::Default
     },
     exec_string: proc {
       ""
+    },
+    print_deprecations: proc {
+      true
     }
   })
 

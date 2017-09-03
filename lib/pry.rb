@@ -160,3 +160,4 @@ require "pry/inspector"
 require 'pry/object_path'
 require 'pry/output'
 require "pry/jruby"
+require "pry/deprecate"

@@ -133,6 +133,16 @@ module Pry::Config::Behavior
   end
 
   #
+  # @deprecated
+  #   Use {#clear} instead.
+  #
+  # @see #clear
+  #
+  def refresh
+    clear
+  end
+
+  #
   # @return [Array<String>]
   #   returns an array of keys in self.
   #

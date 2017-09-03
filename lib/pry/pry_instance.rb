@@ -63,14 +63,16 @@ class Pry
   # @option options [Object] :target
   #   The initial context for this session.
   def initialize(options={})
+    @config = Pry::Config.new
+    config.merge!(options)
+    register_deprecations!
+
     @binding_stack = []
     @indent        = Pry::Indent.new
     @command_state = {}
     @eval_string   = ""
     @backtrace     = options.delete(:backtrace) || caller
     target = options.delete(:target)
-    @config = Pry::Config.new
-    config.merge!(options)
     push_prompt(config.prompt)
     @input_array  = Pry::HistoryArray.new config.memory_size
     @output_array = Pry::HistoryArray.new config.memory_size
@@ -99,6 +101,7 @@ class Pry
         include Pry::Helpers::Text
         include Pry::Helpers::BaseHelpers
         include Pry::Prompt
+        include Pry::Deprecate
         define_method(:_pry_) { this }
         extend self
         public_class_method *Pry::Helpers::BaseHelpers.methods(false)
@@ -691,5 +694,18 @@ class Pry
   # @return [Boolean]
   def quiet?
     config.quiet
+  end
+
+  private
+  def register_deprecations!
+    h.deprecate_method! ["Pry::Helpers::Text#default", h.method(:default)],
+                        "Pry::Helpers::Text#default is deprecated. " \
+                        "Use strip_color instead."
+    h.deprecate_method! [config.method(:refresh)],
+                        "Pry::Config#refresh is deprecated. " \
+                        "Use #clear instead."
+    h.deprecate_method! ["Pry::Command#text"],
+                        "Pry::Command#text is deprecated. " \
+                        "Remove 'text.' prefix."
   end
 end
