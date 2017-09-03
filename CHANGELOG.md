@@ -6,101 +6,92 @@ __Fork began at https://github.com/pry/pry/commit/f177c95b13c4d702c145885d8fe611
 
 __Features__
 
-   * Add Pry::JRuby.
 
-   * Add `Pry.configure` as an alternative to the current way of changing configuration options in `.pryrc` files.
-    ([#1502](https://github.com/pry/pry/pull/1502))
+   * Add `Pry.configure`, see [#1502](https://github.com/pry/pry/pull/1502).
 
-    * Add `Pry::Helpers::Text#{displayable_character?,displayable_string?,snowman_ready?}`.
+   * Add `Pry::Helpers::Text#{displayable_character?,displayable_string?,snowman_ready?}`.
 
-    * Coloring functions such as `black()` etc respect `_pry_.color` automatically,
-      see [#1637](https://github.com/pry/pry/pull/1637).
+   * Coloring functions such as `black()` etc respect `_pry_.color` automatically,
+     see [#1637](https://github.com/pry/pry/pull/1637).
 
-    * Add `Pry#helpers`, see [#1635](https://github.com/pry/pry/pull/1635). Aliased as `Pry#h`.
+   * Add `Pry#helpers`, see [#1635](https://github.com/pry/pry/pull/1635). Aliased as `Pry#h`.
 
-    * Add `Pry::Helpers::Colors`, and a new `#paint` function.
+   * Add clear-screen command, see [#1630](https://github.com/pry/pry/pull/1630).
 
-    * Add clear-screen command ([#1630](https://github.com/pry/pry/pull/1630))
+   * Fix [#1636](https://github.com/pry/pry/issues/1636)
 
-    * Fix [#1636](https://github.com/pry/pry/issues/1636)
+   * Add `Pry::Prompt.[]`, `Pry::Prompt.add_prompt()`, `Pry::Prompt.alias_prompt()` and
+   `Pry::Prompt.remove_prompt()`, plus more, for integrating custom prompts with Pry
+    See [#1628](https://github.com/pry/pry/pull/1628). See Pry::Prompt for complete details.
+
+   * Add text helpers for background colors, see [#1624](https://github.com/pry/pry/pull/1624).
+
+   * Include Pry::Helpers::Text into Pry::Command. Deprecate `Pry::Command#text`. See [#1629](https://github.com/pry/pry/pull/1629).
+
+   * Fix string literal methods completion, see [#1590](https://github.com/pry/pry/pull/1590).
+
+   * Make sure Pry::WrappedModule::Candidate#source_location returns non-nil value when `.name`
+     has been redefined on a Class/Module, see [#1623](https://github.com/pry/pry/pull/1623).
+
+   * Add alias 'whereami[?!]+' for 'whereami' command. See [#1597](https://github.com/pry/pry/pull/1597).
+
+   * Improve completion speed in large applications. See [#1588](https://github.com/pry/pry/pull/1588).
+
+   * Pry::ColorPrinter.pp: add `newline` argument and pass it on to PP. See [#1603](https://github.com/pry/pry/pull/1603).
+
+   * Use `less` or system pager pager on MS Windows if it is available. See [#1512](https://github.com/pry/pry/pull/1512).
+
+   * Remove Slop as a runtime dependency by vendoring v3.4 as Pry::Slop.
+     Possible to depend on Slop v4 and Pry at the same time without running into version conflicts.
+     See [#1497](https://github.com/pry/pry/issues/1497).
+
+
+   _Features without PRs, see master branch for complete details_
 
     * Add 'alias-prompt' command.
+    * Add Pry::JRuby.
+    * Add `Pry::Helpers::Colors`, and a new `#paint` function.
+    * Add `Pry::Config::Behavior#eager_load!` for cases where Pry is being used in Bundler environment, without
+      being present in bundle / Gemfile.
+    * Add support for BasicObject subclasses who implement their own #inspect
+    * Add 'gem-readme' command, prints the README file bundled with a rubygem.
+    * Add 'gem-search' command, searches for a gem with the rubygems.org HTTP API.
 
-    * Add `Pry::Prompt.[]`, `Pry::Prompt.add_prompt()`, `Pry::Prompt.alias_prompt()` and
-    `Pry::Prompt.remove_prompt()`, plus more, for integrating custom prompts with Pry
-     ([#1628](https://github.com/pry/pry/pull/1628)). See Pry::Prompt for complete details.
-
-    * Add text helpers for background colors ([#1624](https://github.com/pry/pry/pull/1624))
-
-    * Include Pry::Helpers::Text into Pry::Command, and deprecate `Pry::Command#text`. ([#1629](https://github.com/pry/pry/pull/1629))
-
-    * Fix string literal methods completion. ([#1590](https://github.com/pry/pry/pull/1590))
-
-    * Make sure Pry::WrappedModule::Candidate#source_location returns non-nil value when `.name`
-      has been redefined on a Class/Module ([#1623](https://github.com/pry/pry/pull/1623))
-
-    * Add alias 'whereami[?!]+' for 'whereami' command. ([#1597](https://github.com/pry/pry/pull/1597))
-
-    * Improve completion speed in large applications. ([#1588](https://github.com/pry/pry/pull/1588))
-
-    * Pry::ColorPrinter.pp: add `newline` argument and pass it on to PP. ([#1603](https://github.com/pry/pry/pull/1603))
-
-    * Use `less` or system pager pager on MS Windows if it is available. ([#1512](https://github.com/pry/pry/pull/1512))
-
-    * Add `Pry::Config::Behavior#eager_load!` to add a possible workaround for issues like ([#1501](https://github.com/pry/pry/issues/1501))
-
-    * Add support for BasicObject subclasses who implement their own #inspect (#1341)
-
-    * Remove Slop as a runtime dependency by vendoring v3.4 as Pry::Slop.
-      People can depend on Slop v4 and Pry at the same time without running into version conflicts.
-      ([#1497](https://github.com/pry/pry/issues/1497))
-
-    * Add 'gem-readme' command, prints the README file bundled with a rubygem
-    * Add 'gem-search' command, searches for a gem with the rubygems.org HTTP API
 
 __Bug fix__
 
    * Fix auto-indentation of code that uses a single-line rescue ([#1450](https://github.com/pry/pry/issues/1450))
-    * Don't raise when directory permissions don't allow file expansion ([#1432](https://github.com/pry/pry/issues/1432))
-    * Defining a method called "ls" no longer breaks the "ls" command ([#1407](https://github.com/pry/pry/issues/1407))
-    * Syntax highlight &lt;tt&gt; tags in documentation output.
-    * Fix 'include RSpec::Matchers' at the top-level (#1277)
-    * Fixed bug in the `cat` command where it was impossible to use line numbers with files ([#1349](https://github.com/pry/pry/issues/1349))
-    * Fixed uncaught Errno::EOPNOTSUPP exception when $stdout is a socket ([#1352](https://github.com/pry/pry/issues/1352))
-    * Fixed error when Pry was trying to load incompatible versions of plugins ([#1312](https://github.com/pry/pry/issues/1312))
-    * Fixed bug when `hist --clear` led to ArgumentError ([#1340](https://github.com/pry/pry/pull/1340))
-    * Fixed the "uninitialized constant Pry::ObjectPath::StringScanner" exception during autocomplete ([#1330](https://github.com/pry/pry/issues/1330))
-    * Fixed regression with `pry -e` when it messes the terminal ([#1387](https://github.com/pry/pry/issues/1387))
-    * Fixed regression with space prefixes of expressions ([#1369](https://github.com/pry/pry/issues/1369))
-    * Fixed support for the tee command ([#1334](https://github.com/pry/pry/issues/1334))
+   * Don't raise when directory permissions don't allow file expansion ([#1432](https://github.com/pry/pry/issues/1432))
+   * Defining a method called "ls" no longer breaks the "ls" command ([#1407](https://github.com/pry/pry/issues/1407))
+   * Syntax highlight &lt;tt&gt; tags in documentation output.
+   * Fix 'include RSpec::Matchers' at the top-level (#1277)
+   * Fixed bug in the `cat` command where it was impossible to use line numbers with files ([#1349](https://github.com/pry/pry/issues/1349))
+   * Fixed uncaught Errno::EOPNOTSUPP exception when $stdout is a socket ([#1352](https://github.com/pry/pry/issues/1352))
+   * Fixed error when Pry was trying to load incompatible versions of plugins ([#1312](https://github.com/pry/pry/issues/1312))
+   * Fixed bug when `hist --clear` led to ArgumentError ([#1340](https://github.com/pry/pry/pull/1340))
+   * Fixed the "uninitialized constant Pry::ObjectPath::StringScanner" exception during autocomplete ([#1330](https://github.com/pry/pry/issues/1330))
+   * Fixed regression with `pry -e` when it messes the terminal ([#1387](https://github.com/pry/pry/issues/1387))
+   * Fixed regression with space prefixes of expressions ([#1369](https://github.com/pry/pry/issues/1369))
+   * Fixed support for the tee command ([#1334](https://github.com/pry/pry/issues/1334))
 
 __Misc__
 
    * Display a warning when you cd'ed inside a C object and executed 'show-source' without arguments ([#691](https://github.com/pry/pry/issues/691))
-
-    * Make the stagger_output method more reliable by reusing possibly available Pry instance ([#1364](https://github.com/pry/pry/pull/1364))
-
-    * Make the 'gem-install' message less confusing by removing backticks ([#1350](https://github.com/pry/pry/pull/1350))
-
-    * Introduced the new way to define hooks for commands (with `Pry.hooks.add_hook("{before,after}_commandName")`). The old way is deprecated, but still supported (with `Pry.commands.{before,after}_command`) ([#651](https://github.com/pry/pry/issues/651))
-
-    * Removed hints on Foreman support (see [this](https://github.com/ddollar/foreman/pull/536))
-
-    * Implemented support for CDPATH for ShellCommand ([#1433](https://github.com/pry/pry/issues/1433), [#1434](https://github.com/pry/pry/issues/1434))
-
-    * `Pry::CLI.parse_options` does not start Pry anymore ([#1393](https://github.com/pry/pry/pull/1393))
-
-    * The gem uses CPU-less platforms for Windows now ([#1410](https://github.com/pry/pry/pull/1410))
-
-    * Add `Pry::Config::Memoization` to make it easier to implement your own `Pry::Config::Default` class.([#1503](https://github.com/pry/pry/pull/1503/))
-
-    * Lazy load the config defaults for `Pry.config.history` and `Pry.config.gist`.
+   * Make the stagger_output method more reliable by reusing possibly available Pry instance ([#1364](https://github.com/pry/pry/pull/1364))
+   * Make the 'gem-install' message less confusing by removing backticks ([#1350](https://github.com/pry/pry/pull/1350))
+   * Introduced the new way to define hooks for commands (with `Pry.hooks.add_hook("{before,after}_commandName")`). The old way is deprecated, but still supported (with `Pry.commands.{before,after}_command`) ([#651](https://github.com/pry/pry/issues/651))
+   * Removed hints on Foreman support (see [this](https://github.com/ddollar/foreman/pull/536))
+   * Implemented support for CDPATH for ShellCommand ([#1433](https://github.com/pry/pry/issues/1433), [#1434](https://github.com/pry/pry/issues/1434))
+   * `Pry::CLI.parse_options` does not start Pry anymore ([#1393](https://github.com/pry/pry/pull/1393))
+   * The gem uses CPU-less platforms for Windows now ([#1410](https://github.com/pry/pry/pull/1410))
+   * Add `Pry::Config::Memoization` to make it easier to implement your own `Pry::Config::Default` class.([#1503](https://github.com/pry/pry/pull/1503/))
+   * Lazy load the config defaults for `Pry.config.history` and `Pry.config.gist`.
 
 __Ruby 2.4__
 
    * Improve Ruby 2.4 support ([#1611](https://github.com/pry/pry/pull/1611)):
-     * Deprecated constants are hidden from `ls` output by default, use the `-d` switch to see them.
-     * Fix warnings that originate in Pry while using the repl.
+   * Deprecated constants are hidden from `ls` output by default, use the `-d` switch to see them.
+   * Fix warnings that originate in Pry while using the repl.
 
 __Deprecated__
 
