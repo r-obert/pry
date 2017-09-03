@@ -1,10 +1,12 @@
 ### HEAD
 
-__NOTE:__
-__You are looking at the CHANGELOG for a fork of Pry, that doesn't plan to merge changes back to Pry.__
+__NOTE:<br/>__
+__You are looking at the CHANGELOG for a fork of Pry, that doesn't plan to merge changes back to Pry.<br/>__
 __Fork began at https://github.com/pry/pry/commit/f177c95b13c4d702c145885d8fe611abbe603d6b__
 
 __Features__
+
+   * Add Pry::JRuby.
 
    * Add `Pry.configure` as an alternative to the current way of changing configuration options in `.pryrc` files.
     ([#1502](https://github.com/pry/pry/pull/1502))
