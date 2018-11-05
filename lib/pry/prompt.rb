@@ -5,7 +5,7 @@ class Pry
   #
   # @example
   #   Pry::Prompt.add(
-  #     :ipython,
+  #     'ipython',
   #     'IPython-like prompt', [':', '...:']
   #   ) do |_context, _nesting, _pry_, sep|
   #     sep == ':' ? "In [#{_pry_.input_ring.count}]: " : '   ...: '
@@ -39,7 +39,7 @@ class Pry
       # Retrieves a prompt.
       #
       # @example
-      #   Prompt[:my_prompt][:value]
+      #   Prompt['my_prompt'][:value]
       #
       # @param [Symbol] prompt_name The name of the prompt you want to access
       # @return [Hash{Symbol=>Object}]
@@ -109,7 +109,7 @@ DESC
       )
     end
 
-    add(:simple, "A simple `>>`.\n", ['>> ', ' | ']) do |_, _, _, sep|
+    add('simple', "A simple `>>`.\n", ['>> ', ' | ']) do |_, _, _, sep|
       sep
     end
 
@@ -140,6 +140,6 @@ DESC
       )
     end
 
-    add(:none, 'Wave goodbye to the Pry prompt.', Array.new(2)) { '' }
+    add('none', 'Wave goodbye to the Pry prompt.', Array.new(2)) { '' }
   end
 end
